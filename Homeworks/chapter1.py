@@ -1,4 +1,6 @@
 import random
+import math
+
 
 def batteryprint(time, num, surplus):
     print("现在有{}个电池，已经工作了{}h，下一个电池充满还有{}".format(num, time, surplus))
@@ -80,7 +82,65 @@ def chapter1_5(nums):
             max_profit = ave_profit
     print("max profit {}, buy {} books".format(max_profit, suit_books))
 
-chapter1_5(int(input("模拟次数")))
+#chapter1_5(int(input("模拟次数")))
 
-####
+# pi
+def pi_needle(n):
+    # 构建一个整数坐标的格，设置针的长度为1，那么N/M=2/pi
+    M = 0
+
+    def circle_choice():
+        x, y = random.uniform(0,10), random.uniform(0,10)
+        theta = random.uniform(1,2*math.pi)
+        x_ = x + math.cos(theta)
+        y_ = y + math.sin(theta)
+        print(x,y,x_,y_)
+        return x, y, x_,y_
+
+    def intersect(x,y,x_,y_):
+        if math.floor(y) != math.floor(y_):
+            return True
+        return False
+
+    for i in range(n):
+        x, y, x_, y_ = circle_choice()
+
+        if intersect(x,y,x_,y_):
+            M += 1
+            print("intersect！")
+        else:
+            print("no")
+
+    if M == 0:
+        print("Fail")
+        return 0
+    else:
+        return 2*n/M
+
+print(pi_needle(int(input("how many times you wanna simulate"))))
+
+def pi_throws(n):
+    m = 0
+    def in_circle(x,y):
+        dis = (x-0.5)**2 + (y-0.5)**2
+        if dis < 1/4:
+            return True
+        else:
+            return False
+
+    for i in range(n):
+        x, y = random.uniform(0,1), random.uniform(0,1)
+        if in_circle(x,y):
+            m += 1
+    pi = 4*m/n
+    print("pi = {}".format(pi))
+    return pi
+
+pi_throws(int(input("n")))
+
+
+
+
+
+
 
