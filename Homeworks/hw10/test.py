@@ -114,5 +114,6 @@ class perm():
             self.perms = newPerms
         return self.best()
     
-a = perm(14,40)
-a.main()
+a = perm(8,20)
+result = a.main()
+print("final result",result)
